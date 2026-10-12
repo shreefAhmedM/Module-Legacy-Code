@@ -156,13 +156,13 @@ def send_bloom():
     if type_check_error is not None:
         return type_check_error
     content = request.json["content"]
-
-    if len(content) > 280:
+    maxBlooms = 280
+    if len(content) > maxBlooms:
         return make_response(
             (
                 {
                     "success": False,
-                    "message": "Content must be 280 characters or fewer",
+                    "message": "Content must be ${maxBlooms} characters or fewer",
                 },
                 400,
             )
